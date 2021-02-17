@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/filialen")
 @ExposesResourceFor(Filiaal.class)
+@CrossOrigin(exposedHeaders = "Location")
 class FiliaalController {
     private final FiliaalService filiaalService;
     private final EntityLinks entityLinks;
@@ -31,6 +32,7 @@ class FiliaalController {
     }
     @GetMapping("{id}")
     @Operation(summary = "Een filiaal zoeken op id")
+    @CrossOrigin
     EntityModel<Filiaal> get(@PathVariable long id) {
         return filiaalService.findById(id).map(filiaal -> EntityModel.of(
                 filiaal,
